@@ -1,5 +1,9 @@
 import './style.css';
 
+const coachImage = new URL('../assets/saravanan-cutout.png', import.meta.url).href;
+const galleryImages = [1, 2, 3, 4, 5, 6].map(number => new URL(`../assets/gallery/photo-${String(number).padStart(2, '0')}.png`, import.meta.url).href);
+const workoutVideo = new URL('../assets/video/saravanan-workout.mp4', import.meta.url).href;
+
 const app = document.querySelector('#app');
 
 app.innerHTML = `
@@ -34,7 +38,7 @@ app.innerHTML = `
         <div class="energy-core"></div><div class="wire-sphere"></div>
         <div class="hero-label label-top">TRAIN<br><b>SMART.</b></div>
         <div class="hero-label label-bottom">BUILD<br><b>CONSISTENCY.</b></div>
-        <div class="portrait-wrap tilt"><img src="/assets/saravanan-cutout.png" alt="Saravanan, online fitness coach" /></div>
+        <div class="portrait-wrap tilt"><img src="${coachImage}" alt="Saravanan, online fitness coach" /></div>
         <div class="floating-card card-one"><span>COACHING MODE</span><b>PERSONALIZED</b><i>↗</i></div>
         <div class="floating-card card-two"><span>FOCUS</span><b>CONSISTENCY</b><i>01</i></div>
         <div class="floating-card card-three"><span>TRACK</span><b>YOUR PROGRESS</b><i>02</i></div>
@@ -56,7 +60,7 @@ app.innerHTML = `
     <section id="gallery" class="section gallery-section">
       <div class="section-head reveal"><div><span class="kicker">THE COACH / 02</span><h2>FITNESS<br><em>IN FRAMES.</em></h2></div><p>Drop Saravanan's best training, physique and professional photos into the six prepared slots. The layout turns them into an editorial-style visual wall.</p></div>
       <div class="gallery-grid">
-        ${[1,2,3,4,5,6].map((n,i)=>`<figure class="gallery-card reveal ${i===0?'gallery-large':''}"><div class="photo-slot"><img src="/assets/gallery/photo-${String(n).padStart(2,'0')}.png" alt="Saravanan fitness photo ${n}" onerror="this.style.display='none';this.parentElement.classList.add('empty')"><span>PHOTO ${String(n).padStart(2,'0')}<small>ADD IMAGE</small></span></div></figure>`).join('')}
+        ${galleryImages.map((image, i) => `<figure class="gallery-card reveal ${i===0?'gallery-large':''}"><div class="photo-slot"><img src="${image}" alt="Saravanan fitness photo ${i + 1}" onerror="this.style.display='none';this.parentElement.classList.add('empty')"><span>PHOTO ${String(i + 1).padStart(2,'0')}<small>ADD IMAGE</small></span></div></figure>`).join('')}
       </div>
       <div class="media-note">PLACE YOUR IMAGES IN <b>assets/gallery/</b> AND NAME THEM <b>photo-01.jpg</b> THROUGH <b>photo-06.jpg</b>.</div>
     </section>
@@ -66,7 +70,7 @@ app.innerHTML = `
         <div class="video-glow"></div>
         <div class="video-frame">
           <video id="coach-video" controls playsinline preload="metadata">
-            <source src="/assets/video/saravanan-workout.mp4" type="video/mp4">
+            <source src="${workoutVideo}" type="video/mp4">
           </video>
           <div class="video-placeholder" id="video-placeholder"><span class="play-ring">▶</span><b>TRAINING IN MOTION</b><small>ADD SARAVANAN'S WORKOUT VIDEO</small></div>
           <div class="video-corner">04K / COACH FILM</div>
@@ -117,7 +121,7 @@ app.innerHTML = `
     </section>
 
     <section id="coach" class="section coach">
-      <div class="coach-image reveal"><div class="coach-glow"></div><img src="/assets/saravanan-cutout.png" alt="Saravanan" /></div>
+      <div class="coach-image reveal"><div class="coach-glow"></div><img src="${coachImage}" alt="Saravanan" /></div>
       <div class="coach-copy reveal"><span class="kicker">MEET YOUR COACH / 09</span><h2>SARAVANAN<br><em>ONLINE COACHING.</em></h2><p>The goal is simple: make your training more structured, your nutrition more intentional and your progress easier to follow.</p><div class="coach-points"><div><b>TRAIN</b><span>Structured workouts</span></div><div><b>NOURISH</b><span>Personalized nutrition guidance</span></div><div><b>PROGRESS</b><span>Tracking & accountability</span></div></div><a class="btn btn-outline" href="https://www.linkedin.com/in/saravanan-t-b0231b28a/" target="_blank" rel="noreferrer">View professional profile <span>↗</span></a></div>
     </section>
 
